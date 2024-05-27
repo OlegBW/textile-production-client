@@ -13,3 +13,7 @@ export type ReportData = {
   epi: string;
   ppi: string;
 };
+
+export type ReportRecord = ReportData & {
+  id: string
+}

@@ -15,5 +15,7 @@ export const API_CONFIG: ApiConfig = {
     batchPrediction: '/prediction/bulk',
     constructions: '/constructions',
     metrics: '/metrics/rejection',
+    logs: '/admin/logs',
+    adminUser: '/admin/users',
   },
 };

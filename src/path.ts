@@ -17,5 +17,8 @@ export const PATH = {
   },
   admin: {
     group: 'admin',
+    log: 'log',
+    reports: 'reports',
+    users: 'users'
   },
 };

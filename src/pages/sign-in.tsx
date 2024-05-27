@@ -1,6 +1,7 @@
 import SignInComponent from '../components/sign-in';
 import { PATH } from '../path';
 
+// TODO: пропрацювати обробку помилок
 export default function SignInPage() {
   return (
     <SignInComponent

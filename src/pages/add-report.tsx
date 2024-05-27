@@ -13,6 +13,9 @@ import {
   Stack,
 } from '@mui/material';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const AddReportPage = () => {
   const { accessToken } = useContext(AuthContext);
 
@@ -43,15 +46,17 @@ const AddReportPage = () => {
     try {
       if (accessToken) {
         await addReport(formData, accessToken);
+        toast.success('Report successfully added');
       }
     } catch (error) {
+      toast.error('Error submitting form');
       console.error('Error submitting form:', error);
     }
   };
 
   return (
     <Container maxWidth="md">
-      <Stack sx={{ mt: 4, alignItems: 'center' }}>
+      <Stack sx={{ alignItems: 'center' }}>
         <Typography variant="h4" component="h1" gutterBottom>
           Add report
         </Typography>
@@ -84,6 +89,7 @@ const AddReportPage = () => {
           </Stack>
         </form>
       </Stack>
+      <ToastContainer />
     </Container>
   );
 };

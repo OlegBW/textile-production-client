@@ -1,6 +1,7 @@
 import SignUpComponent from '../components/sign-up';
 import { PATH } from '../path';
 
+// TODO: пропрацювати обробку помилок
 export default function SignUpPage() {
   return (
     <SignUpComponent

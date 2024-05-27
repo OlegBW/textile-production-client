@@ -24,12 +24,13 @@ import {
 } from 'recharts';
 import { Construction, Metric } from '../types/visualize';
 import { AuthContext } from '../context/auth';
+import { PaginationState } from '../types/http';
 
-type Pagination = {
-  page: number;
-  pageSize: number;
-  totalPages: number;
-};
+// type Pagination = {
+//   page: number;
+//   pageSize: number;
+//   totalPages: number;
+// };
 
 function serializeConstruction(input: Construction): string {
   return `${input.warp_count}/${input.weft_count}/${input.epi}/${input.ppi}`;
@@ -51,7 +52,7 @@ function ConstructionList({
   onToggle,
 }: ConstructionListProps) {
   const { accessToken } = useContext(AuthContext);
-  const [pagination, setPagination] = useState<Pagination>({
+  const [pagination, setPagination] = useState<PaginationState>({
     page: 1,
     pageSize: 5,
     totalPages: 1,
@@ -174,12 +175,12 @@ export default function VisualizePage() {
         direction={'row'}
         justifyContent={'space-evenly'}
         spacing={4}
-        sx={{ mt: 4, height: '80vh' }}
+        sx={{ height: '80vh' }}
         flexGrow={1}
         alignItems={'center'}
       >
         <Container sx={{ flex: 1 }}>
-          <Typography variant="h6" gutterBottom textAlign={'center'}>
+          <Typography variant="h4" gutterBottom textAlign={'center'}>
             Constructions
           </Typography>
           <ConstructionList
@@ -188,7 +189,7 @@ export default function VisualizePage() {
           />
         </Container>
         <Container sx={{ flex: 2 }}>
-          <Typography variant="h6" gutterBottom textAlign={'center'}>
+          <Typography variant="h4" gutterBottom textAlign={'center'}>
             Rejection Metrics
           </Typography>
           <RejectionChart metricsData={metricsData} />

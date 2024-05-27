@@ -12,12 +12,18 @@ export default function DefaultLayout() {
   return (
     <>
       <CssBaseline />
-      <Container component="main" sx={{ minHeight: '100vh', paddingTop: 8 }}>
-        <Header onMenuClick={() => setShowDrawer(!showDrawer)} />
-        <DrawerMenu isOpen={showDrawer} onClose={() => setShowDrawer(false)} />
+      <Header onMenuClick={() => setShowDrawer(!showDrawer)} />
+      <DrawerMenu isOpen={showDrawer} onClose={() => setShowDrawer(false)} />
+      <Container
+        component="main"
+        sx={{
+          minHeight: '100vh',
+          paddingTop: 12,
+        }}
+      >
         <Outlet />
-        <Footer />
       </Container>
+      <Footer />
     </>
   );
 }

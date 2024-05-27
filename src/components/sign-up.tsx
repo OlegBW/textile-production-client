@@ -93,7 +93,7 @@ export default function SignUpComponent({
 
   return (
     <Container maxWidth="xs">
-      <Stack mt={4} flexDirection={'column'} justifyContent={'center'}>
+      <Stack flexDirection={'column'} justifyContent={'center'}>
         <Typography variant="h3" sx={{ textAlign: 'left', marginBottom: 2 }}>
           {title}
         </Typography>

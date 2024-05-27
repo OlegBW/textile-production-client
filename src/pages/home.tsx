@@ -11,6 +11,8 @@ import OnlinePredictionIcon from '@mui/icons-material/OnlinePrediction';
 import BatchPredictionIcon from '@mui/icons-material/BatchPrediction';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import EventNoteIcon from '@mui/icons-material/EventNote';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 import { PATH } from '../path';
 
@@ -42,9 +44,21 @@ const features = [
   {
     title: 'Admin panel',
     icon: <AdminPanelSettingsIcon fontSize="large" />,
-    link: '/admin-panel',
+    link: '/admin/users',
     description: 'Manage settings and user permissions.',
   },
+  {
+    title: 'Logs',
+    icon: <EventNoteIcon fontSize="large" />,
+    link: '/admin/log',
+    description: 'Monitor and review system and user activities.',
+  },
+  {
+    title: 'Report Confirmation',
+    icon: <CheckCircleIcon fontSize="large" />,
+    link: '/admin/reports',
+    description: 'Confirm or reject reports.',
+}
 ];
 
 const HomePage = () => {

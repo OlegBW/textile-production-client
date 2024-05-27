@@ -8,3 +8,10 @@ export type SignUpCredentials = {
   password: string;
   username: string;
 };
+
+export type User = {
+  email: string;
+  id: number;
+  username: string;
+  role: string;
+};

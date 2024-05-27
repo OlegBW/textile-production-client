@@ -5,11 +5,12 @@ import { getBatchPrediction } from '../api/prediction';
 import { AuthContext } from '../context/auth';
 import { useContext } from 'react';
 
-// TODO: Різні кольори повідомлень
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function BatchPredictionPage() {
   const { accessToken } = useContext(AuthContext);
   const [file, setFile] = useState<File>();
-  const [message, setMessage] = useState('');
   const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,7 +23,7 @@ export default function BatchPredictionPage() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!file) {
-      setMessage('Please select a file to upload.');
+      toast.info('Please select a file to upload.');
       return;
     }
     const formData = new FormData();
@@ -31,19 +32,24 @@ export default function BatchPredictionPage() {
     try {
       if (accessToken) {
         const response = await getBatchPrediction(formData, accessToken);
-        const downloadURL = URL.createObjectURL(response);
+        const newDownloadUrl = URL.createObjectURL(response);
 
-        if (downloadURL) {
-          URL.revokeObjectURL(downloadURL);
+        if (downloadUrl) {
+          URL.revokeObjectURL(downloadUrl);
         }
 
-        setDownloadUrl(downloadURL);
+        setDownloadUrl(newDownloadUrl);
         console.log(response);
       }
-      setMessage('File uploaded successfully');
+      toast.success('File uploaded successfully');
     } catch (error) {
+      if (downloadUrl) {
+        URL.revokeObjectURL(downloadUrl);
+      }
+
+      setDownloadUrl(null);
       console.log(error);
-      setMessage('Error uploading file');
+      toast.error('Error uploading file');
     }
   };
 
@@ -79,15 +85,10 @@ export default function BatchPredictionPage() {
           </Button>
         </Stack>
       </form>
-      {message && (
-        <Typography variant="body1" color="error" gutterBottom>
-          {message}
-        </Typography>
-      )}
       {downloadUrl && (
         <Button
           variant="contained"
-          color="primary"
+          color="secondary"
           component="a"
           href={downloadUrl}
           download={'result.csv'}
@@ -95,6 +96,7 @@ export default function BatchPredictionPage() {
           Download
         </Button>
       )}
+      <ToastContainer />
     </Box>
   );
 }

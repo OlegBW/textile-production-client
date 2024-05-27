@@ -44,12 +44,34 @@ export async function post<TResponse, TBody>(
   });
 }
 
+export async function patch<TResponse, TBody>(
+  url: string,
+  body: TBody,
+  headers?: Record<string, string>
+) {
+  return httpRequest<TResponse, TBody>(url, {
+    method: 'PATCH',
+    headers,
+    body,
+  });
+}
+
 export async function get<TResponse>(
   url: string,
   headers?: Record<string, string>
 ) {
   return httpRequest<TResponse>(url, {
     method: 'GET',
+    headers,
+  });
+}
+
+export async function httpDelete<TResponse>(
+  url: string,
+  headers?: Record<string, string>
+) {
+  return httpRequest<TResponse>(url, {
+    method: 'DELETE',
     headers,
   });
 }

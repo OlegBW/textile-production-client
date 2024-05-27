@@ -16,6 +16,8 @@ import OnlinePredictionIcon from '@mui/icons-material/OnlinePrediction';
 import BatchPredictionIcon from '@mui/icons-material/BatchPrediction';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import EventNoteIcon from '@mui/icons-material/EventNote';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 type Props = {
   isOpen: boolean;
@@ -86,12 +88,33 @@ export default function DrawerMenu({ isOpen, onClose }: Props) {
           <ListItemButton
             component={Link}
             sx={ListItemStyle}
-            to={`/${PATH.admin.group}`}
+            to={`/${PATH.admin.group}/${PATH.admin.users}`}
           >
             <ListItemIcon>
               <AdminPanelSettingsIcon />
             </ListItemIcon>
             <ListItemText primary={'Admin panel'} />
+          </ListItemButton>
+          <ListItemButton
+            component={Link}
+            sx={ListItemStyle}
+            to={`/${PATH.admin.group}/${PATH.admin.log}`}
+          >
+            <ListItemIcon>
+              <EventNoteIcon />
+            </ListItemIcon>
+            <ListItemText primary={'Logs'} />
+          </ListItemButton>
+
+          <ListItemButton
+            component={Link}
+            sx={ListItemStyle}
+            to={`/${PATH.admin.group}/${PATH.admin.reports}`}
+          >
+            <ListItemIcon>
+              <CheckCircleIcon />
+            </ListItemIcon>
+            <ListItemText primary={'Report Confirmation'} />
           </ListItemButton>
         </List>
         <Divider />

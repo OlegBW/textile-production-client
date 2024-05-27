@@ -7,6 +7,7 @@ import {
   Container,
   Grid,
   Stack,
+  Box,
 } from '@mui/material';
 import { getPrediction } from '../api/prediction';
 import { AuthContext } from '../context/auth';
@@ -54,7 +55,7 @@ export default function PredictionPage() {
 
   return (
     <Container maxWidth="md">
-      <Stack sx={{ mt: 4, alignItems: 'center' }}>
+      <Stack sx={{ alignItems: 'center' }}>
         <Typography variant="h4" component="h1" gutterBottom>
           Prediction Input Form
         </Typography>
@@ -88,15 +89,24 @@ export default function PredictionPage() {
         </form>
       </Stack>
 
-      {rejection && (
+      <Box
+        sx={{
+          mt: 2,
+          p: 2,
+          width: '100%',
+          bgcolor: 'grey.100',
+          borderRadius: 1,
+          textAlign: 'center',
+        }}
+      >
         <Typography
           variant="h6"
+          component="div"
           color={rejection === 'Rejected' ? 'error' : 'primary'}
-          sx={{ mt: 2 }}
         >
-          Rejection: {rejection}
+          Rejection: {rejection ? Number(rejection).toFixed(3) : 'No result yet'}
         </Typography>
-      )}
+      </Box>
     </Container>
   );
 }

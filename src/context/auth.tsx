@@ -1,12 +1,6 @@
 import { ReactNode, createContext, useState, useEffect } from 'react';
 import * as api from '../api/auth';
-
-type User = {
-  email: string;
-  id: number;
-  username: string;
-  role: string;
-};
+import { User } from '../types/auth';
 
 type AuthContext = {
   user: User | null;
@@ -30,26 +24,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
   const [accessToken, setAccessToken] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const token = localStorage.getItem('accessToken');
-        if (token) {
-          setAccessToken(token);
-          const response = await api.getCurrentUser(token);
-          setUser(response);
-        }
-      } catch (err) {
-        console.error('Error fetching user:', err);
-        setAccessToken(null);
-        setUser(null);
-        localStorage.removeItem('accessToken');
-      }
-    };
-
-    fetchUser();
-  }, []);
-
   const handleSetAccessToken = (token: string | null) => {
     setAccessToken(token);
     if (token) {
@@ -58,6 +32,25 @@ export function AuthProvider({ children }: AuthProviderProps) {
       localStorage.removeItem('accessToken');
     }
   };
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const token = localStorage.getItem('accessToken');
+        if (token) {
+          handleSetAccessToken(token);
+          const response = await api.getCurrentUser(token);
+          setUser(response);
+        }
+      } catch (err) {
+        console.error('Error fetching user:', err);
+        handleSetAccessToken(null);
+        setUser(null);
+      }
+    };
+
+    fetchUser();
+  }, []);
 
   return (
     <AuthContext.Provider

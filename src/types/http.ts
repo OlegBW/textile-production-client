@@ -11,3 +11,9 @@ export type PaginatedResponse<TBody> = {
   pagination: Pagination;
   result: TBody;
 };
+
+export type PaginationState = {
+  page: number;
+  pageSize: number;
+  totalPages: number;
+};
