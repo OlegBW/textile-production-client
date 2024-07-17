@@ -13,7 +13,7 @@ import BatchPredictionPage from './pages/batch-predict';
 import VisualizePage from './pages/visualize';
 import LogsPage from './pages/log';
 import SubmitReportPage from './pages/submit-report';
-import AdminPanelPage from './pages/admin-panel'; 
+import AdminPanelPage from './pages/admin-panel';
 
 export default function AppRouter() {
   return (
@@ -77,7 +77,7 @@ export default function AppRouter() {
               </ProtectedWrapper>
             }
           />
-                    <Route
+          <Route
             path={`/${PATH.admin.group}/${PATH.admin.users}`}
             element={
               <ProtectedWrapper>
